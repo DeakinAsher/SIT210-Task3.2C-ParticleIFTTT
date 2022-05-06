@@ -1,0 +1,24 @@
+int light = A4;
+
+void setup()
+{
+    pinMode(light, INPUT);
+}
+
+void loop()
+{
+    int lightLevel = analogRead(light);
+  
+    if (lightLevel > 100)
+    {
+        Particle.publish("Sunlight", "Light", PRIVATE);
+        
+    }
+
+    else if(lightLevel <= 100)
+    {
+        Particle.publish("Sunlight", "Dark", PRIVATE);
+    }
+  
+    delay(5000);
+}
